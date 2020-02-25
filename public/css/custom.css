@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+.roboto-black{
+    font-weight: 900;
+}
+
+.it-logo{
+    font-size: 5.5em!important;
+    margin-top: 10px;
+}
+
+.menu-item{
+    transition: .5s;
+    font-size: 1.3em;
+}
+
+.menu-item:hover{
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.p-side-20{
+    padding: 0 20%;
+}
+
