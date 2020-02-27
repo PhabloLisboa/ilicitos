@@ -43,14 +43,13 @@
         <main>
             @yield('main')
         </main>
-
-
         <footer class="page-footer black">
             <div class="container">
             <div class="row">
                 <div class="col l6 s12">
                 <h5 class="white-text">Parceiros</h5>
                 <p class="grey-text text-lighten-4"></p>
+
                 </div>
                 <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Socias</h5>
@@ -60,6 +59,8 @@
                     <li><a class="grey-text text-lighten-3" href="#!"><i class="fab fa-twitter"></i> Twitter</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!"><i class="fas fa-at"></i> Email</a></li>
                 </ul>
+
+                <a href="{{route('login')}}">Administração</a>
                 </div>
             </div>
             </div>

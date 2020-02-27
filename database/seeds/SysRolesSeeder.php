@@ -12,7 +12,7 @@ class SysRolesSeeder extends Seeder
      */
     public function run()
     {
-        $descriptions = ['Administrador', 'Usuário'];
+        $descriptions = ['Administrador', 'Redator', 'Usuário'];
 
         foreach($descriptions as $d){
             $faker = new SysRole();
