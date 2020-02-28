@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Team;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePeopleTeam;
+use App\Models\Person;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
+    protected $status = 2; // Inativo
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +29,8 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('Interno.Team.create');
+        $roles = Role::all();
+        return view('Interno.Team.create', compact('roles'));
     }
 
     /**
@@ -33,9 +39,10 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePeopleTeam $request)
     {
-        //
+        $person = new Person::create($request);
+
     }
 
     /**

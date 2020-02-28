@@ -72,4 +72,5 @@
             var instances = M.Dropdown.init(elems, {});
         });
   </script>
+  @yield('script')
 </html>
