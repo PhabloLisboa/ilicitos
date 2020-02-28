@@ -38,7 +38,7 @@
                 <a href="#email"><span class="white-text email">{{Auth::user()->email}}</span></a>
               </div>
             </li>
-            <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Equipe</a>
+        <li class="in-menu-item"><a href="/administracao/equipe"class="waves-effect waves-black roboto roboto-black">Equipe</a>
             <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Notícias</a>
             <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Sobre</a>
             <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Agenda</a>

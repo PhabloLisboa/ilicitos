@@ -13,5 +13,11 @@
 Auth::routes();
 
 Route::get('/', 'Home\HomeController@index')->name('begin');
-Route::get('/administracao', 'Administracao\AdministracaoController@index')->name('begin');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/administracao', 'Administracao\AdministracaoController@index')->name('begin');
+
+    Route::resource('/administracao/equipe', 'Team\TeamController');
+
+});
 

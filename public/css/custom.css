@@ -138,8 +138,25 @@ header{
 .sidenav-overlay{
     width: 0;
 }
+/* ---------------------------------------------------------------------------- */
 
-
-.main-admin-container{
-    background-color: blue;
+.jsutify-between{
+    display: flex;
+    justify-content: space-between;
 }
+.align-center{
+    align-items: center;
+}
+
+.hedaer-page{
+    margin: 0;
+}
+
+.pt-1{
+    padding-top: 1%!important;
+}
+
+
+/* .main-admin-container{
+    background-color: blue;
+} */

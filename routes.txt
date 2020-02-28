@@ -39,3 +39,28 @@
 |        | GET|HEAD | register               | register         | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest    |
 |        | POST     | register               |                  | App\Http\Controllers\Auth\RegisterController@register                  | web,guest    |
 +--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
++--------+-----------+------------------------------------+------------------+------------------------------------------------------------------------+--------------+
+| Domain | Method    | URI                                | Name             | Action                                                                 | Middleware   |
++--------+-----------+------------------------------------+------------------+------------------------------------------------------------------------+--------------+
+|        | GET|HEAD  | /                                  | begin            | App\Http\Controllers\Home\HomeController@index                         | web          |
+|        | GET|HEAD  | administracao                      | begin            | App\Http\Controllers\Administracao\AdministracaoController@index       | web,auth     |
+|        | POST      | administracao/equipe               | equipe.store     | App\Http\Controllers\Team\TeamController@store                         | web,auth     |
+|        | GET|HEAD  | administracao/equipe               | equipe.index     | App\Http\Controllers\Team\TeamController@index                         | web,auth     |
+|        | GET|HEAD  | administracao/equipe/create        | equipe.create    | App\Http\Controllers\Team\TeamController@create                        | web,auth     |
+|        | DELETE    | administracao/equipe/{equipe}      | equipe.destroy   | App\Http\Controllers\Team\TeamController@destroy                       | web,auth     |
+|        | PUT|PATCH | administracao/equipe/{equipe}      | equipe.update    | App\Http\Controllers\Team\TeamController@update                        | web,auth     |
+|        | GET|HEAD  | administracao/equipe/{equipe}      | equipe.show      | App\Http\Controllers\Team\TeamController@show                          | web,auth     |
+|        | GET|HEAD  | administracao/equipe/{equipe}/edit | equipe.edit      | App\Http\Controllers\Team\TeamController@edit                          | web,auth     |
+|        | GET|HEAD  | api/user                           |                  | Closure                                                                | api,auth:api |
+|        | GET|HEAD  | login                              | login            | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest    |
+|        | POST      | login                              |                  | App\Http\Controllers\Auth\LoginController@login                        | web,guest    |
+|        | POST      | logout                             | logout           | App\Http\Controllers\Auth\LoginController@logout                       | web          |
+|        | POST      | password/confirm                   |                  | App\Http\Controllers\Auth\ConfirmPasswordController@confirm            | web,auth     |
+|        | GET|HEAD  | password/confirm                   | password.confirm | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm    | web,auth     |
+|        | POST      | password/email                     | password.email   | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web          |
+|        | POST      | password/reset                     | password.update  | App\Http\Controllers\Auth\ResetPasswordController@reset                | web          |
+|        | GET|HEAD  | password/reset                     | password.request | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web          |
+|        | GET|HEAD  | password/reset/{token}             | password.reset   | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web          |
+|        | POST      | register                           |                  | App\Http\Controllers\Auth\RegisterController@register                  | web,guest    |
+|        | GET|HEAD  | register                           | register         | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest    |
++--------+-----------+------------------------------------+------------------+------------------------------------------------------------------------+--------------+
