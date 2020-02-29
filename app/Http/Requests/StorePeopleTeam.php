@@ -13,7 +13,7 @@ class StorePeopleTeam extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,9 +24,9 @@ class StorePeopleTeam extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:posts|max:255',
+            'name' => 'required|unique:persons|max:255',
             'born' => 'required| date',
-            'email' => 'required| email',
+            'email' => 'required|email|unique:users',
             'role_id' => 'required'
         ];
     }

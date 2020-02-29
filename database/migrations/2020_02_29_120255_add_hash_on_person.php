@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFkUserStatus extends Migration
+class AddHashOnPerson extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddFkUserStatus extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table){
-            $table->unsignedBigInteger('status_id')->nullable();
-            $table->foreign('status_id')->references('id')->on('user_status')->onDelete('set null');
+        Schema::table('persons', function(Blueprint $table){
+            $table->string('hash')->after('role_id');
         });
     }
 
@@ -26,8 +25,8 @@ class AddFkUserStatus extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table){
-            $table->dropForeign('status_id');
+        Schema::table('persons', function(Blueprint $table){
+            $table->dropColumn('hash');
         });
     }
 }

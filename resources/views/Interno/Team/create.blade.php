@@ -7,6 +7,13 @@
             <h5 class="hedaer-page">Adicionando um novo Ilícito...</h5>
         </div>
     </div>
+    @if(session('status'))
+        <div class="row">
+            <div class="col s12 card-panel teal white-text center-align">
+                <span>{{session('status')}}</span>
+            </div>
+        </div>
+    @endif
 
     <div class="row">
         <form class="col s12 offset-s2 pull-l2" method="POST"  action="{{route('equipe.store')}}">

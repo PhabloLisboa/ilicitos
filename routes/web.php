@@ -13,6 +13,7 @@
 Auth::routes();
 
 Route::get('/', 'Home\HomeController@index')->name('begin');
+Route::get('/administracao/equipe/user/create/{hash}', 'User\UserController@store');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/administracao', 'Administracao\AdministracaoController@index')->name('begin');

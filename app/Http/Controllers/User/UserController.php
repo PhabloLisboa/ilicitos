@@ -1,19 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Team;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePeopleTeam;
-use App\Mail\CadastroMail;
-use App\Models\Person;
-use App\Models\Role;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
-class TeamController extends Controller
+class UserController extends Controller
 {
-    protected $status = 2; // Inativo
-
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +14,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return view('Interno.Team.team');
+        //
     }
 
     /**
@@ -31,8 +24,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        return view('Interno.Team.create', compact('roles'));
+        //
     }
 
     /**
@@ -41,13 +33,9 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePeopleTeam $request)
+    public function store($hash)
     {
-        $person = Person::create($request);
-        Mail::to($request->email)->send(new CadastroMail($person->hash));
-        return redirect(route('equipe.create'))->with('success',
-            'Tudo Certo! Agora só esperar'.$person->name.' prosseguir!');
-
+        dd($hash);
     }
 
     /**

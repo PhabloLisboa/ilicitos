@@ -12,8 +12,13 @@ class Person extends Model
     static function create($request) {
         $person = new Person();
         $person->name = $request->name;
-        $person->name = $request->name;
-        $person->name = $request->name;
-        $person->name = $request->name;
+        $person->description = $request->description;
+        $person->born = $request->born;
+        $person->role_id = $request->role_id;
+        $person->hash = bcrypt(time());
+
+        $person->save();
+
+        return $person;
     }
 }
