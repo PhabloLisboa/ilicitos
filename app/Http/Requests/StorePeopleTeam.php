@@ -24,9 +24,9 @@ class StorePeopleTeam extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:persons|max:255',
+            'name' => 'required|max:255',
             'born' => 'required| date',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'role_id' => 'required'
         ];
     }

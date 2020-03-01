@@ -3,20 +3,28 @@
 @section('main')
 
     <div class="row">
-        <div class="col s12 push-s4 l6 ">
+        <div class="col s12 l6 offset-m2">
             <h5 class="hedaer-page">Adicionando um novo Ilícito...</h5>
         </div>
     </div>
-    @if(session('status'))
+    @if(session('success'))
         <div class="row">
-            <div class="col s12 card-panel teal white-text center-align">
-                <span>{{session('status')}}</span>
+            <div class="col s12 offset-m2 pull-l2 card-panel teal white-text center-align">
+                <span>{{session('success')}}</span>
+            </div>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="row">
+            <div class="col s12 offset-m2 pull-l2 card-panel red white-text center-align">
+                <span>{{session('error')}}</span>
             </div>
         </div>
     @endif
 
     <div class="row">
-        <form class="col s12 offset-s2 pull-l2" method="POST"  action="{{route('equipe.store')}}">
+        <form class="col s12 offset-m2 offset-l2 pull-l2" method="POST"  action="{{route('equipe.store')}}">
             @csrf
             <div class="row">
                 <div class="input-field col s6">

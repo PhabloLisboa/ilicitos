@@ -7,6 +7,8 @@ use App\Http\Requests\StorePeopleTeam;
 use App\Mail\CadastroMail;
 use App\Models\Person;
 use App\Models\Role;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -43,10 +45,23 @@ class TeamController extends Controller
      */
     public function store(StorePeopleTeam $request)
     {
-        $person = Person::create($request);
-        Mail::to($request->email)->send(new CadastroMail($person->hash));
-        return redirect(route('equipe.create'))->with('success',
-            'Tudo Certo! Agora só esperar'.$person->name.' prosseguir!');
+
+        try{
+            if(User::verifyEmail($request->email))
+            return redirect()->back()->with('error', 'Alguém já está usando esse e-mail!');
+
+
+            $person = Person::create($request);
+
+            Mail::to($request->email)->send(new CadastroMail($person->hash));
+
+            return redirect(route('equipe.create'))->with('success',
+                'Tudo Certo! Agora só esperar '.$person->name.' prosseguir!');
+
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Foi mal! Falha ao adicionar esta pessoa...');
+        }
+
 
     }
 

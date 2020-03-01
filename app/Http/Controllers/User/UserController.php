@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUser;
+use App\Models\Person;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -22,9 +26,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($hash)
     {
-        //
+        $person = Person::getPersonByHash($hash);
+        return view('Externo.user.create', compact('person'));
     }
 
     /**
@@ -33,9 +38,31 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($hash)
+    public function store(Request $request)
     {
-        dd($hash);
+        $messages = [
+            'same'    => 'As senhas não conferem!',
+            'size'    => 'Precisamos de uma senha maior que :size.!',
+            'required' => 'Você não preencheu esse campo!',
+            'email'      => 'Esse email não é válido!',
+        ];
+
+        $request->validate(
+            [
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:4',
+                'confirmPass' => 'required|same:password'
+            ], $messages
+        );
+
+        if(User::verifyEmail($request->email)){
+            throw new Exception("Alguém já está utilizando esse amil");
+        }
+
+        dd($request->file('avatar'));
+        $request->person = Person::getPersonByHash($request->hash);
+
+        $user = User::create($request);
     }
 
     /**

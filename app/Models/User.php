@@ -36,4 +36,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function verifyEmail($email){
+        $user = User::where('email', $email)->get();
+        return count($user) ? true : false;
+    }
+
+    public static function create($request){
+        $user = new User();
+        $user->person_id = $request->person->id;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->sys_role_id = 3;
+        $user->avatar_id = Image::create($request)->id;
+        $user->status_id = 1;
+
+        $user->save();
+
+        return $user;
+    }
 }

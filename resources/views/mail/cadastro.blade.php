@@ -31,7 +31,7 @@
             <span style="display:block">
                 Clique em <b>Prosseguir</b> para confirmar sua posição!
             </span>
-            <a href="{{URL::to('/').'/administracao/equipe/user/create/'.$hash}}" style="background-color:#000; color:#fff; padding: 2%; display:block;text-align:center">
+            <a href="{{URL::to('/').'/user/create/'.$hash}}" style="background-color:#000; color:#fff; padding: 2%; display:block;text-align:center">
                 <h3>Prosseguir</h3>
             </a>
 
@@ -39,7 +39,7 @@
                 Se estiver com problemas para vizualizar esta mensagem, clique no link:
             </small style="display:block">
             <small>
-                {{URL::to('/').'/administracao/equipe/user/create/'.$hash}}
+                {{URL::to('/').'user/create/'.$hash}}
             </small>
         </div>
     </body>
