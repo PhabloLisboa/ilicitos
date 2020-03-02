@@ -48,7 +48,7 @@ class User extends Authenticatable
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->sys_role_id = 3;
-        $user->avatar_id = Image::create($request)->id;
+        $user->avatar_id = Image::create($request, 'avatar')->id;
         $user->status_id = 1;
 
         $user->save();

@@ -4,6 +4,21 @@
 @section('main')
 <div class="container">
     <div class="row justify-center">
+        @if(session('success'))
+            <div class="row">
+                <div class="col s12 offset-m2 pull-l2 card-panel teal white-text center-align">
+                    <span>{{session('success')}}</span>
+                </div>
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="row">
+                <div class="col s12 offset-m2 pull-l2 card-panel red white-text center-align">
+                    <span>{{session('error')}}</span>
+                </div>
+            </div>
+        @endif
         <form method="POST" action="{{ route('login') }}" class="card p-10">
             <h5 class="center-align">ADMINISTRAÇÃO</h5>
             @csrf

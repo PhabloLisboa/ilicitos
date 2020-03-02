@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administracao;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,9 +15,9 @@ class AdministracaoController extends Controller
             case 1:
                 return view('Interno.adm.index');
             case 2:
-                return ["alo" => "kkkk"];
+                return asset(Auth::user()->avatar_id->path);
             default:
-                return ["tttt" => "kkkk"];
+                return asset(Image::find(Auth::user()->avatar_id)->path);
         }
     }
 }

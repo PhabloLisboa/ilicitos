@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUser;
+use App\Models\Image;
 use App\Models\Person;
 use App\Models\User;
 use Exception;
@@ -55,14 +56,21 @@ class UserController extends Controller
             ], $messages
         );
 
-        if(User::verifyEmail($request->email)){
-            throw new Exception("Alguém já está utilizando esse amil");
+        try{
+            if(User::verifyEmail($request->email)){
+                throw new Exception("Alguém já está utilizando esse amil");
+            }
+
+            $request->person = Person::getPersonByHash($request->hash);
+
+            $user = User::create($request);
+
+            return redirect(route('login'))->with('success', 'Ok! Agora é só fazer o login');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Foi mal! Erro ao criar teu login...');
+
         }
 
-        dd($request->file('avatar'));
-        $request->person = Person::getPersonByHash($request->hash);
-
-        $user = User::create($request);
     }
 
     /**
