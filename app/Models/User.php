@@ -37,6 +37,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function avatar(){
+        return $this->belongsTo(Image::class, 'avatar_id');
+    }
+
     public static function verifyEmail($email){
         $user = User::where('email', $email)->get();
         return count($user) ? true : false;

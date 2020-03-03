@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Team;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Role\RoleController as RoleFunctions;
 use App\Http\Requests\StorePeopleTeam;
 use App\Mail\CadastroMail;
 use App\Models\Person;
@@ -23,7 +24,8 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return view('Interno.Team.team');
+        $allByRole = RoleFunctions::getAllUsesByRole();
+        return view('Interno.Team.team', compact('allByRole'));
     }
 
     /**

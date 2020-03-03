@@ -15,9 +15,9 @@ class AdministracaoController extends Controller
             case 1:
                 return view('Interno.adm.index');
             case 2:
-                return asset(Auth::user()->avatar_id->path);
+                return Auth::user()->avatar;
             default:
-                return asset(Image::find(Auth::user()->avatar_id)->path);
+                return Auth::user()->avatar;
         }
     }
 }
