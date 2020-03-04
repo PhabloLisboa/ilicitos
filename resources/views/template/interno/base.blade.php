@@ -19,7 +19,7 @@
     <header>
       <nav class="top-nav black">
         <div class="user-view right pr-2">
-        <a href="#!" class="dropdown-trigger" data-target="dropdown1"><img class="circle fit image-top-admin" src="{{(asset('/storage/images').'/'.Auth::user()->avatar->path)}}"></a>
+        <a href="#!" class="dropdown-trigger" data-target="dropdown1"><img class="circle fit image-top-admin" src="{{Auth::user()->avatar ? asset('/storage/images').'/'.Auth::user()->avatar->path : asset('/storage/images/empty.webp') }}"></a>
                 <ul id="dropdown1" class="dropdown-content">
                     <li><a href="#!" class="black-text"
                         onclick="event.preventDefault(); document.getElementById('form_logout').submit();">Sair</a></li>
@@ -38,7 +38,7 @@
                 <div class="background black">
 
                 </div>
-                <a href="#user" class="justify-center"><img class="circle fit" src="{{(asset('/storage/images').'/'.Auth::user()->avatar->path)}}"></a>
+                <a href="#user" class="justify-center"><img class="circle fit" src="{{Auth::user()->avatar ? asset('/storage/images').'/'.Auth::user()->avatar->path : asset('/storage/images/empty.webp')}}"></a>
                 <a href="#name"><span class="white-text name">Administrador</span></a>
                 <a href="#email"><span class="white-text email">{{Auth::user()->email}}</span></a>
               </div>

@@ -11,6 +11,10 @@ class Person extends Model
     protected $table = 'persons';
     protected $fillable = ['name', 'description', 'born', 'role_id'];
 
+    public function user(){
+        return $this->hasOne(User::class, 'person_id');
+    }
+
     static function create($request) {
         $person = new Person();
         $person->name = $request->name;
