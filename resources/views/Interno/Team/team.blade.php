@@ -40,22 +40,110 @@
         </div>
 
     </div>
+
+    @foreach ($allByRole as $role => $users)
+        @foreach($users as $user)
+            <div class="overlay-team-intrgrant  item-{{$user->id}}-modal" id="closer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card horizontal">
+                                <div class="card-image">
+                                <img class="image-modal" src="{{$user->user->avatar ? asset('/storage/images').'/'. $user->user->avatar->path : asset('/storage/images/empty.webp')}}">
+                                </div>
+                                <div class="card-stacked">
+                                <div class="card-content">
+                                    <form method="POST" action="#">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                            <input name="name" required id="name" type="text"  value="{{$user->name}}"class="validate">
+                                            <label for="name">Nome</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                            <input name="email" required id="email" type="text"  value="{{$user->user->email}}"class="validate">
+                                            <label for="email">Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                            <input name="description" required id="description" type="text" disabled={{($user->user->description)? false: true}} value="{{$user->user->description}}"class="validate">
+                                            <label for="description">Descrição</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <select name="role_id">
+                                                    @foreach($roles as $role)
+                                                        <option selected={{$user->role_id === $role->id? true: false }} value="{{$role->id}}">{{$role->description}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <label>Função</label>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            <label>
+                                              <input name="isRedator" type="checkbox" {{$user->user->sys_role_id != 3 ? "checked" : ""}}/>
+                                              <span>Também é um Redator</span>
+                                            </label>
+                                          </p>
+
+                                    </form>
+                                </div>
+                                <div class="card-action">
+                                    <a class="waves-effect waves-light btn submit" >This is a link</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endforeach
+
 @endsection
 @section('script')
     <script>
         let thumbs = [...document.querySelectorAll('.thumb')];
 
         thumbs.forEach( item =>{
+            let nome = document.querySelector(`.${item.id}-p`)
             item.addEventListener('mouseover', e => {
                 e.stopPropagation()
-                document.querySelector(`.${e.target.id}-p`).style.opacity = 1;
+                nome.style.opacity = 1;
             })
 
             item.addEventListener('mouseout', e => {
                 e.stopPropagation()
-                document.querySelector(`.${e.target.id}-p`).style.opacity = 0;
+                nome.style.opacity = 0;
+            })
+
+            item.addEventListener('click', e => {
+                document.querySelector(`.${e.target.id}-modal`).style.display = "flex"
+                document.querySelector(`.${e.target.id}-modal`).style.opacity = 1
+
+
+            })
+
+            document.querySelector(`.${item.id}-modal`)
+            .addEventListener('click', function(e) {
+
+                if(e.target.classList.value === this.classList.value || e.target.classList.value === "container"){
+                    this.style.opacity = 0
+                    this.style.display = "none"
+                }
             })
         })
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, {});
+        });
 
 
     </script>

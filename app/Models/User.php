@@ -41,6 +41,10 @@ class User extends Authenticatable
         return $this->belongsTo(Image::class, 'avatar_id');
     }
 
+    public function person(){
+        return $this->belongsTo(Person::class, 'id', 'person_id');
+    }
+
     public static function verifyEmail($email){
         $user = User::where('email', $email)->get();
         return count($user) ? true : false;

@@ -25,7 +25,8 @@ class TeamController extends Controller
     public function index()
     {
         $allByRole = RoleFunctions::getAllUsesByRole();
-        return view('Interno.Team.team', compact('allByRole'));
+        $roles = Role::all();
+        return view('Interno.Team.team', compact('allByRole', 'roles'));
     }
 
     /**

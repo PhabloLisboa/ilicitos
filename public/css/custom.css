@@ -173,6 +173,36 @@ header{
 .imgTeamIntegrant{
     opacity: 1;
 }
+
+
+.overlay-team-intrgrant{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 1000;
+    vertical-align: middle;
+    opacity: 0;
+    transition: 1s;
+}
+
+
+.overlay-team-intrgrant div{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    transition: 1s;
+
+}
+
+
+.image-modal{
+    max-height: 50vh;
+}
 /* ************************************* */
 
 
