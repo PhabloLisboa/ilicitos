@@ -12,7 +12,22 @@
                     Adicionar Integrante <i class="fas fa-plus"></i>
                 </a>
             </div>
-        </div>
+
+            @if(session('success'))
+                <div class="row">
+                    <div class="col s12 offset-m2 pull-l2 card-panel teal white-text center-align">
+                        <span>{{session('success')}}</span>
+                    </div>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="row">
+                    <div class="col s12 offset-m2 pull-l2 card-panel red white-text center-align">
+                        <span>{{session('error')}}</span>
+                    </div>
+                </div>
+            @endif
 
         <div class="row">
             <div class="col s12 l10 push-l1 mt-5">
@@ -53,23 +68,24 @@
                                 </div>
                                 <div class="card-stacked">
                                 <div class="card-content">
-                                    <form method="POST" action="#">
+                                    <form method="POST" id="fomulario-{{$user->id}}" action="{{route('equipe.update', $user->id)}}">
                                         @csrf
+                                        @method('PUT')
                                         <div class="row">
                                             <div class="input-field col s12">
-                                            <input name="name" required id="name" type="text"  value="{{$user->name}}"class="validate">
+                                            <input name="name" id="name" type="text"  value="{{$user->name}}"class="validate">
                                             <label for="name">Nome</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                            <input name="email" required id="email" type="text"  value="{{$user->user->email}}"class="validate">
+                                            <input name="email" id="email" type="text"  value="{{$user->user->email}}"class="validate">
                                             <label for="email">Email</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                            <input name="description" required id="description" type="text" disabled={{($user->user->description)? false: true}} value="{{$user->user->description}}"class="validate">
+                                            <input name="description" id="description" type="text" disabled={{($user->user->description)? false: true}} value="{{$user->user->description}}"class="validate">
                                             <label for="description">Descrição</label>
                                             </div>
                                         </div>
@@ -94,7 +110,7 @@
                                     </form>
                                 </div>
                                 <div class="card-action">
-                                    <a class="waves-effect waves-light btn submit" >This is a link</a>
+                                    <a class="waves-effect waves-light btn submit" formId="{{$user->id}}" >Atualizar</a>
                                 </div>
                                 </div>
                             </div>
@@ -137,7 +153,17 @@
                     this.style.display = "none"
                 }
             })
+        });
+
+        let submits = [...document.querySelectorAll('.submit')];
+
+        submits.forEach(item => {
+            item.addEventListener('click', e => {
+                document.querySelector(`#fomulario-${item.getAttribute('formId')}`).submit();
+            })
         })
+
+
 
 
         document.addEventListener('DOMContentLoaded', function() {

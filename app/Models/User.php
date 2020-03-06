@@ -42,7 +42,7 @@ class User extends Authenticatable
     }
 
     public function person(){
-        return $this->belongsTo(Person::class, 'id', 'person_id');
+        return $this->belongsTo(Person::class, 'person_id');
     }
 
     public static function verifyEmail($email){
@@ -58,6 +58,27 @@ class User extends Authenticatable
         $user->sys_role_id = 3;
         $user->avatar_id = Image::create($request, 'avatar')->id;
         $user->status_id = 1;
+
+        $user->save();
+
+        return $user;
+    }
+
+    public static function updateForTeam ($request){
+        $user = User::where('email', $request->email)->first();
+        $person = $user->person;
+
+        $person->update([
+            "name" => $request->name,
+            "role_id" => $request->role_id,
+            "description" => $request->description,
+        ]);
+
+        $user->email = $request->email;
+
+        if($request->isRedator)
+            $user->sys_role_id = 2;
+
 
         $user->save();
 

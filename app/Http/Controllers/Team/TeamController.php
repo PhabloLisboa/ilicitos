@@ -51,7 +51,7 @@ class TeamController extends Controller
 
         try{
             if(User::verifyEmail($request->email))
-            return redirect()->back()->with('error', 'Alguém já está usando esse e-mail!');
+                return redirect()->back()->with('error', 'Alguém já está usando esse e-mail!');
 
 
             $person = Person::create($request);
@@ -99,7 +99,16 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            User::updateForTeam($request);
+
+            return redirect(route('equipe.create'))->with('success',
+                'Tudo Certo! Atualizado com Sucesso!');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Foi mal! Falha ao atulizar alguns dados...');
+
+        }
     }
 
     /**
