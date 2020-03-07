@@ -65,7 +65,7 @@ class User extends Authenticatable
     }
 
     public static function updateForTeam ($request){
-        $user = User::where('email', $request->email)->first();
+        $user = User::find($request->userId);
         $person = $user->person;
 
         $person->update([

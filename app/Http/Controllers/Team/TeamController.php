@@ -99,14 +99,16 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->userId = $id;
+
         try {
             User::updateForTeam($request);
 
-            return redirect(route('equipe.create'))->with('success',
+            return redirect()->back()->with('success',
                 'Tudo Certo! Atualizado com Sucesso!');
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Foi mal! Falha ao atulizar alguns dados...');
+            return redirect()->back()->with('error', $e->getMessage());
 
         }
     }

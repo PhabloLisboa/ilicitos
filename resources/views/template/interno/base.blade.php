@@ -44,7 +44,7 @@
               </div>
             </li>
         <li class="in-menu-item"><a href="/administracao/equipe"class="waves-effect waves-black roboto roboto-black">Equipe</a>
-            <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Notícias</a>
+            <li class="in-menu-item"><a href="/administracao/noticias" class="waves-effect waves-black roboto roboto-black">Notícias</a>
             <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Sobre</a>
             <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Agenda</a>
             <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Peças</a>

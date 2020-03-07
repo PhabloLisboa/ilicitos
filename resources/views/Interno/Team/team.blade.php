@@ -94,7 +94,7 @@
                                             <div class="input-field col s12">
                                                 <select name="role_id">
                                                     @foreach($roles as $role)
-                                                        <option selected={{$user->role_id === $role->id? true: false }} value="{{$role->id}}">{{$role->description}}</option>
+                                                        <option value="{{$role->id}}"  {{$user->role_id === $role->id? "selected": ""  }}>{{$role->description}}</option>
                                                     @endforeach
                                                 </select>
                                                 <label>Função</label>
