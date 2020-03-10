@@ -25,7 +25,7 @@
     @endif
 
     <div class="row">
-        <form  method="POST"  action="{{route('noticias.store')}}">
+        <form  method="POST" class="formToDispatch" action="{{route('noticias.store')}}">
             @csrf
 
 
@@ -35,6 +35,7 @@
                 <label for="title">Título *</label>
                 </div>
             </div>
+            <input name="content" hidden required id="content" type="text" class="validate">
 
             <div id="editor">
 
@@ -42,8 +43,20 @@
                 <p>Some initial <strong>bold</strong> text</p>
                 <p><br></p>
             </div>
-        </form>
+
     </div>
+
+    <div class="row">
+        <div class="col s12 l4 offset-l8 center-align">
+            <a href="/administracao/noticias" class="waves-effect waves-white white color-black btn">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </a>
+            <button type="submit" class="waves-effect submit waves-black black btn">
+                Adicionar
+            </button>
+        </div>
+    </div>
+    </form>
 @endsection
 @section('script')
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -61,26 +74,18 @@ const toolbarOptions = [
         [ 'clean' ]                               // remove formatting button
     ];
 
-
-    function imageHandler() {
-            var range = this.quill.getSelection();
-            var value = prompt('What is the image URL');
-            if(value){
-                this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
-            }
-        }
-
-        Quill.register('image', imageHandler);
-
         const quill = new Quill('#editor', {
             theme: 'snow',
             modules:{
                 toolbar: toolbarOptions,
-                handlers: {
-                    image: imageHandler
-                }
             }
         });
+
+        document.querySelector('.submit').addEventListener('click', e => {
+            e.preventDefault()
+            document.querySelector('#content').value = document.querySelector("#editor").innerHTML;
+            document.querySelector('.formToDispatch').submit();
+        })
 
 
     </script>
