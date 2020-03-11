@@ -17,6 +17,7 @@ class CreateNewsTable extends Migration
             $table->bigIncrements('id');
             $table->text('title');
             $table->longText('content');
+            $table->longText('text');
             $table->unsignedBigInteger('author_id')->nullable();
             $table->foreign('author_id')->references('id')->on('persons')->onDelete('set null');
             $table->unsignedBigInteger('image_id')->nullable();

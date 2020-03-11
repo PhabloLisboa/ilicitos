@@ -3,6 +3,7 @@
 @section('main')
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
+
     <div class="row">
         <div class="col s12 l6 offset-m2">
             <h5 class="hedaer-page">Adicionando Notícia...</h5>
@@ -36,13 +37,9 @@
                 </div>
             </div>
             <input name="content" hidden required id="content" type="text" class="validate">
+            <input name="text" hidden required id="text" type="text" class="validate">
 
-            <div id="editor">
-
-                <p>Hello World!</p>
-                <p>Some initial <strong>bold</strong> text</p>
-                <p><br></p>
-            </div>
+            <textarea>Next, use our Get Started docs to setup Tiny!</textarea>
 
     </div>
 
@@ -59,34 +56,9 @@
     </form>
 @endsection
 @section('script')
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdn.tiny.cloud/1/cy38zql363bzwrybyrr5d0iwpzh12myl6sg8fpwt1skimwiv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>tinymce.init({selector:'textarea'});</script>
     <script>
-
-const toolbarOptions = [
-        [{ 'font': [] }, { 'size': [] }],
-        [ 'bold', 'italic', 'underline', 'strike' ],
-        [{ 'color': [] }, { 'background': [] }],
-        [{ 'script': 'super' }, { 'script': 'sub' }],
-        [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block' ],
-        [{ 'list': 'ordered' }, { 'list': 'bullet'}, { 'indent': '-1' }, { 'indent': '+1' }],
-        [ 'direction', { 'align': [] }],
-        [ 'link', 'image', 'video', 'formula' ],
-        [ 'clean' ]                               // remove formatting button
-    ];
-
-        const quill = new Quill('#editor', {
-            theme: 'snow',
-            modules:{
-                toolbar: toolbarOptions,
-            }
-        });
-
-        document.querySelector('.submit').addEventListener('click', e => {
-            e.preventDefault()
-            document.querySelector('#content').value = document.querySelector("#editor").innerHTML;
-            document.querySelector('.formToDispatch').submit();
-        })
-
 
     </script>
 @endsection
