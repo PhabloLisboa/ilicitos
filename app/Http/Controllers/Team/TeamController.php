@@ -121,6 +121,11 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            Person::destroy($id);
+            return redirect()->back()->with('success', 'Integrante excluído com sucesso!');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Foi mal! Erro ao excluir esse integrante...');
+        }
     }
 }

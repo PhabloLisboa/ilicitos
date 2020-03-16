@@ -65,7 +65,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $news = News::findOrFail($id);
+        return view('Interno.news.edit', compact('news'));
     }
 
     /**
@@ -77,7 +78,15 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        try{
+            $news = News::findOrFail($id);
+            $news->update($request->all());
+            return redirect(route('noticias.show', $id))->with('success', 'Ae! Notícia atualizada!');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Foi mal! Erro ao atualizar essa notícia...');
+        }
+
     }
 
     /**
@@ -88,6 +97,13 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        try{
+            News::destroy($id);
+            return redirect(route('noticias.index'))->with('success', 'Ae! Notícia Excluída com sucesso!');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Foi mal! Erro ao atualizar essa notícia...');
+        }
+
     }
 }

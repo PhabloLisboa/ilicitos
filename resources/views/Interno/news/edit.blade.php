@@ -8,45 +8,30 @@
             <h5 class="hedaer-page">Adicionando Notícia...</h5>
         </div>
     </div>
-    @if(session('success'))
-        <div class="row">
-            <div class="col s12 offset-m2 pull-l2 card-panel teal white-text center-align">
-                <span>{{session('success')}}</span>
-            </div>
-        </div>
-    @endif
-
-    @if(session('error'))
-        <div class="row">
-            <div class="col s12 offset-m2 pull-l2 card-panel red white-text center-align">
-                <span>{{session('error')}}</span>
-            </div>
-        </div>
-    @endif
 
     <div class="row">
-        <form  method="POST" class="formToDispatch" action="{{route('noticias.store')}}">
+        <form  method="POST" class="formToDispatch" action="{{route('noticias.update', $news->id)}}">
             @csrf
-
+            @method('PUT')
 
             <div class="row">
                 <div class="input-field col s12">
-                <input name="title" required id="title" type="text" class="validate">
+                <input name="title" required id="title" value="{{$news->title}}" type="text" class="validate">
                 <label required for="title">Título *</label>
                 </div>
             </div>
 
-            <textarea name="text" ></textarea>
+            <textarea name="text" >{!! $news->text !!}</textarea>
 
     </div>
 
     <div class="row">
         <div class="col s12 l4 offset-l8 center-align">
-            <a href="/administracao/noticias" class="waves-effect waves-white white color-black btn">
+            <a href="{{route('noticias.show', $news->id)}}" class="waves-effect waves-white white color-black btn">
                 <i class="fas fa-arrow-left"></i> Voltar
             </a>
             <button type="submit" class="waves-effect submit waves-black black btn">
-                Adicionar
+                Atualizar
             </button>
         </div>
     </div>

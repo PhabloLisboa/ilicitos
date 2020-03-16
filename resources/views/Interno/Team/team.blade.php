@@ -58,6 +58,7 @@
 
     @foreach ($allByRole as $role => $users)
         @foreach($users as $user)
+        @dd($user->user)
             <div class="overlay-team-intrgrant  item-{{$user->id}}-modal" id="closer">
                 <div class="container">
                     <div class="row">
@@ -109,8 +110,22 @@
 
                                     </form>
                                 </div>
+
+
+
+
                                 <div class="card-action">
-                                    <a class="waves-effect waves-light btn submit" formId="{{$user->id}}" >Atualizar</a>
+                                    <a class="waves-effect waves-light btn submit mr-1" formId="{{$user->id}}" >Atualizar</a>
+
+                                    <form method="POST" id="deleteForm" hidden action="{{route('noticias.destroy', $user->id)}}">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+
+                                        <button  typye="submit" form="deleteForm" class="waves-effect waves-red red btn" style="display:inline-blo">
+                                            Excluir <i class="fas fa-minus-circle"></i>
+                                        </button>
+
                                 </div>
                                 </div>
                             </div>
@@ -170,7 +185,6 @@
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems, {});
         });
-
 
     </script>
 
