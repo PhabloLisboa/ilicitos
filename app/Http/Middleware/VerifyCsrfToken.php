@@ -19,8 +19,10 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'http://youtube.com/*',
-        'https://imgur.com/*',
+        'http://youtube.com/',
+        'http://imgur.com/*',
+        'http://spelling.tiny.cloud/*',
+        'http://tiny.cloud/*',
         'https://quilljs.com/',
         'http://fontawesome.com/'
     ];

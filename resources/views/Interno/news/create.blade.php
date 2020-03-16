@@ -33,13 +33,11 @@
             <div class="row">
                 <div class="input-field col s12">
                 <input name="title" required id="title" type="text" class="validate">
-                <label for="title">Título *</label>
+                <label required for="title">Título *</label>
                 </div>
             </div>
-            <input name="content" hidden required id="content" type="text" class="validate">
-            <input name="text" hidden required id="text" type="text" class="validate">
 
-            <textarea>Next, use our Get Started docs to setup Tiny!</textarea>
+            <textarea name="text" ></textarea>
 
     </div>
 
@@ -57,8 +55,17 @@
 @endsection
 @section('script')
     <script src="https://cdn.tiny.cloud/1/cy38zql363bzwrybyrr5d0iwpzh12myl6sg8fpwt1skimwiv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <script>tinymce.init({selector:'textarea'});</script>
     <script>
-
+        tinymce.init({
+          selector: 'textarea',
+          plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+          toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+          toolbar_mode: 'floating',
+          tinycomments_mode: 'embedded',
+          tinycomments_author: 'Author name',
+          language: 'pt_BR'
+        });
+      </script>
+    <script>
     </script>
 @endsection

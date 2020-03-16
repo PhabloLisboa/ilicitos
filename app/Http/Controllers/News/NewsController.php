@@ -37,7 +37,12 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        try{
+            News::create($request);
+            return redirect(route('noticias.index'))->with('success', 'Ae! Notícia adicionada!');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Foi mal! Erro ao criar essa notícia...');
+        }
     }
 
     /**
@@ -48,7 +53,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        $news = News::findOrFail($id);
+        return view('Interno.news.show', compact('news'));
     }
 
     /**

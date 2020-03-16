@@ -16,7 +16,6 @@ class CreateNewsTable extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('title');
-            $table->longText('content');
             $table->longText('text');
             $table->unsignedBigInteger('author_id')->nullable();
             $table->foreign('author_id')->references('id')->on('persons')->onDelete('set null');
