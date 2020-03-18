@@ -108,7 +108,7 @@ class TeamController extends Controller
                 'Tudo Certo! Atualizado com Sucesso!');
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with('error', 'Erro ao atualizar! Tenha certeza que esse integrante já verificou o e-mail!');
 
         }
     }

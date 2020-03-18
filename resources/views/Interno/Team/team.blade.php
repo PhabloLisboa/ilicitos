@@ -1,12 +1,11 @@
 @extends('template.interno.base')
 @section('title', 'Equipe Ilícitos')
 @section('main')
-    <div class="row">
-        <div class="">
-            <div class="col s12  pull-l1 center-align l6 ">
-                <h3 class="hedaer-page">Equipe</h3>
-            </div>
-
+<div class="row">
+    <div class="">
+        <div class="col s12  pull-l1 center-align l6 ">
+            <h3 class="hedaer-page">Equipe</h3>
+        </div>
             <div class="col s12 l6 pt-1 pull-s2 right-align">
                 <a href="/administracao/equipe/create" class="waves-effect waves-black black btn">
                     Adicionar Integrante <i class="fas fa-plus"></i>
@@ -44,7 +43,7 @@
                                 <div class="col s12 m3 l2 team-integrant">
                                     <p class="text-overlay item-{{$user->id}}-p">{{$user->name}}</p>
                                     <img class="responsive-img thumb" id="item-{{$user->id}}"
-                                    src="{{$user->user->avatar ? asset('/storage/images').'/'. $user->user->avatar->path : asset('/storage/images/empty.webp')}}">
+                                    src="{{($user->user && $user->user->avatar)? asset('/storage/images').'/'. $user->user->avatar->path : asset('/storage/images/empty.webp')}}">
                                 </div>
                             </a>
                         @endforeach
@@ -55,17 +54,15 @@
         </div>
 
     </div>
-
     @foreach ($allByRole as $role => $users)
         @foreach($users as $user)
-        @dd($user->user)
             <div class="overlay-team-intrgrant  item-{{$user->id}}-modal" id="closer">
                 <div class="container">
                     <div class="row">
                         <div class="col">
                             <div class="card horizontal">
                                 <div class="card-image">
-                                <img class="image-modal" src="{{$user->user->avatar ? asset('/storage/images').'/'. $user->user->avatar->path : asset('/storage/images/empty.webp')}}">
+                                <img class="image-modal" src="{{($user->user && $user->user->avatar) ? asset('/storage/images').'/'. $user->user->avatar->path : asset('/storage/images/empty.webp')}}">
                                 </div>
                                 <div class="card-stacked">
                                 <div class="card-content">
@@ -80,13 +77,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                            <input name="email" id="email" type="text"  value="{{$user->user->email}}"class="validate">
+                                            <input name="email" id="email" type="text"  value="{{$user->user? $user->user->email : ' '}}"class="validate">
                                             <label for="email">Email</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                            <input name="description" id="description" type="text" disabled={{($user->user->description)? false: true}} value="{{$user->user->description}}"class="validate">
+                                            <input name="description" id="description" type="text" disabled={{($user->user && $user->user->description)? false: true}} value="{{$user->user?  $user->user->description : ''}}"class="validate">
                                             <label for="description">Descrição</label>
                                             </div>
                                         </div>
@@ -103,7 +100,7 @@
                                         </div>
                                         <p>
                                             <label>
-                                              <input name="isRedator" type="checkbox" {{$user->user->sys_role_id != 3 ? "checked" : ""}}/>
+                                              <input name="isRedator" type="checkbox" {{($user->user && $user->user->sys_role_id != 3) ? "checked" : ""}}/>
                                               <span>Também é um Redator</span>
                                             </label>
                                           </p>
@@ -117,14 +114,14 @@
                                 <div class="card-action">
                                     <a class="waves-effect waves-light btn submit mr-1" formId="{{$user->id}}" >Atualizar</a>
 
-                                    <form method="POST" id="deleteForm" hidden action="{{route('noticias.destroy', $user->id)}}">
+                                    <form method="POST" id="deleteForm-{{$user->id}}"  action="{{route('equipe.destroy', $user->id)}}">
                                         @csrf
                                         @method('DELETE')
                                     </form>
+                                    <button  typye="submit" form="deleteForm-{{$user->id}}"class="waves-effect waves-red red btn">
+                                        Excluir <i class="fas fa-minus-circle"></i>
+                                    </button>
 
-                                        <button  typye="submit" form="deleteForm" class="waves-effect waves-red red btn" style="display:inline-blo">
-                                            Excluir <i class="fas fa-minus-circle"></i>
-                                        </button>
 
                                 </div>
                                 </div>
