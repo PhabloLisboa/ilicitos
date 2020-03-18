@@ -65,6 +65,4 @@
           language: 'pt_BR'
         });
       </script>
-    <script>
-    </script>
 @endsection

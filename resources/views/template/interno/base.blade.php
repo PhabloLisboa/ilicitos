@@ -43,9 +43,9 @@
                 <a href="#email"><span class="white-text email">{{Auth::user()->email}}</span></a>
               </div>
             </li>
-        <li class="in-menu-item"><a href="/administracao/equipe"class="waves-effect waves-black roboto roboto-black">Equipe</a>
-            <li class="in-menu-item"><a href="/administracao/noticias" class="waves-effect waves-black roboto roboto-black">Notícias</a>
-            <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Sobre</a>
+        <li class="in-menu-item"><a href="{{route('equipe.index')}}"class="waves-effect waves-black roboto roboto-black">Equipe</a>
+            <li class="in-menu-item"><a href="{{route('noticias.index')}}" class="waves-effect waves-black roboto roboto-black">Notícias</a>
+            <li class="in-menu-item"><a href="{{route('sobre.index')}}" class="waves-effect waves-black roboto roboto-black">Sobre</a>
             <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Agenda</a>
             <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Peças</a>
             <li class="in-menu-item"><a class="waves-effect waves-black roboto roboto-black">Contatos</a>

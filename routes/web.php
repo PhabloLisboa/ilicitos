@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/administracao', 'Administracao\AdministracaoController@index')->name('begin');
     Route::resource('/administracao/equipe', 'Team\TeamController');
     Route::resource('/administracao/noticias', 'News\NewsController');
+    Route::resource('/administracao/sobre', 'About\AboutController');
 
 });
 
