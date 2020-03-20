@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\News;
+namespace App\Http\Controllers\Piece;
 
 use App\Http\Controllers\Controller;
-use App\Models\News;
+use App\Models\Piece;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class PieceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
-       return view('Interno.news.news', compact('news'));
+        $pieces =  Piece::all();
+        return view('Interno.piece.piece', compact('pieces'));
     }
 
     /**
@@ -26,7 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('Interno.news.create');
+        return view('Interno.piece.create');
     }
 
     /**
@@ -38,10 +38,10 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         try{
-            News::create($request);
-            return redirect(route('noticias.index'))->with('success', 'Ae! Notícia adicionada!');
+            Piece::create($request);
+            return redirect(route('pecas.index'))->with('success', 'Ae! Peça Adicionada!');
         }catch(\Exception $e){
-            return redirect()->back()->with('error', 'Foi mal! Erro ao criar essa notícia...');
+            return redirect()->back()->with('error', 'Foi mal! Erro ao adicionar essa Peça...');
         }
     }
 
@@ -53,8 +53,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $news = News::findOrFail($id);
-        return view('Interno.news.show', compact('news'));
+        //
     }
 
     /**
@@ -65,8 +64,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news = News::findOrFail($id);
-        return view('Interno.news.edit', compact('news'));
+
     }
 
     /**
@@ -78,15 +76,17 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         try{
-            $news = News::findOrFail($id);
-            $news->update($request->all());
-            return redirect(route('noticias.show', $id))->with('success', 'Ae! Notícia atualizada!');
-        }catch(\Exception $e){
-            return redirect()->back()->with('error', 'Foi mal! Erro ao atualizar essa notícia...');
-        }
+            $piece = Piece::findOrFail($id);
+            $piece->update($request->all());
 
+            $piece->cover = $request->cover;
+            $piece->save();
+
+            return redirect(route('pecas.index', $id))->with('success', 'Ae! Peça atualizada!');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Foi mal! Erro ao atualizar essa Peça...');
+        }
     }
 
     /**
@@ -97,13 +97,11 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-
         try{
-            News::destroy($id);
-            return redirect(route('noticias.index'))->with('success', 'Ae! Notícia Excluída com sucesso!');
+            Piece::destroy($id);
+            return redirect(route('pecas.index'))->with('success', 'Ae! Peça Excluída com sucesso!');
         }catch(\Exception $e){
-            return redirect()->back()->with('error', 'Foi mal! Erro ao excluir essa notícia...');
+            return redirect()->back()->with('error', 'Foi mal! Erro ao excluir essa Peça...');
         }
-
     }
 }

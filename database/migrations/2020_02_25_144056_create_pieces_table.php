@@ -19,8 +19,7 @@ class CreatePiecesTable extends Migration
             $table->string('author');
             $table->year('year');
             $table->text('synopsis');
-            $table->unsignedBigInteger('cover_id')->nullable();
-            $table->foreign('cover_id')->references('id')->on('images')->onDelete('set null');
+            $table->string('cover');
             $table->timestamps();
         });
     }

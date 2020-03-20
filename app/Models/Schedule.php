@@ -9,6 +9,10 @@ class Schedule extends Model
     protected $table = 'schedules';
     protected $fillable = ['place', 'date', 'piece_id', 'price'];
 
+    public function piece(){
+       return $this->belongsTo(Piece::class, 'piece_id');
+    }
+
     public static function create($request){
         $schedule =  new Schedule();
         $schedule->place = $request->endereco;
