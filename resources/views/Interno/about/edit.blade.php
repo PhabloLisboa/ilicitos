@@ -1,5 +1,5 @@
 @extends('template.interno.base')
-@section('title', 'Notícias')
+@section('title', 'Alterando Sobre')
 @section('main')
     <div class="row">
         <div class="col s12  pull-l1 center-align l6 ">

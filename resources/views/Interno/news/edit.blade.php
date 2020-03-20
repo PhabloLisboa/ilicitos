@@ -1,5 +1,5 @@
 @extends('template.interno.base')
-@section('title', 'Adicionando Notícia')
+@section('title', 'Editando Notícia')
 @section('main')
 
 

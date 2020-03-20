@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="row">
-                <form class="col s12">
+
                     <div class="row">
                     <div class="input-field col s12">
                         <textarea id="description" name="description" class="materialize-textarea"></textarea>
