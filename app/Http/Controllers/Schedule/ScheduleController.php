@@ -58,7 +58,8 @@ class ScheduleController extends Controller
      */
     public function show($id)
     {
-        //
+        $schedule = Schedule::findOrFail($id);
+        return view('Interno.schedule.show', compact('schedule'));
     }
 
     /**
