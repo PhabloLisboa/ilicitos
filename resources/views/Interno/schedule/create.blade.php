@@ -69,7 +69,7 @@
 @endsection
 @section('script')
     <script>
-         document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             let elems = document.querySelectorAll('select');
             let instances = M.FormSelect.init(elems, {});
         });

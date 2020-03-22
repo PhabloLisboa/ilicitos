@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Schedule;
+namespace App\Http\Controllers\Contact;
 
 use App\Http\Controllers\Controller;
-use App\Models\Piece;
-use App\Models\Schedule;
+use App\Models\Contact;
+use App\Models\ContactType;
 use Illuminate\Http\Request;
 
-class ScheduleController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::all();
-        return view('Interno.schedule.schedule', compact('schedules'));
+        $contacts = Contact::all();
+        $contactTypes = ContactType::all();
+        return view('Interno.contact.contact', compact('contacts', 'contactTypes'));
     }
 
     /**
@@ -27,8 +28,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        $pieces = Piece::all();
-        return view('Interno.schedule.create', compact('pieces'));
+        //
     }
 
     /**
@@ -40,13 +40,11 @@ class ScheduleController extends Controller
     public function store(Request $request)
     {
         try{
-
-            $schedule = Schedule::create($request);
-            return redirect(route('agenda.index'))->with('success',
-                'Tudo Certo! Evento Marcado!');
-
+            $contact = new Contact($request->all());
+            $contact->save();
+            return redirect(route('contato.index'))->with('success', 'Ae! Contato adicionado!');
         }catch(\Exception $e){
-        return redirect()->back()->with('error', $e->getMessage()/*'Foi mal! Falha ao marcar este evento!'*/);
+            return redirect()->back()->with('error', 'Foi mal! Erro ao adicionar contato...');
         }
     }
 
@@ -58,8 +56,7 @@ class ScheduleController extends Controller
      */
     public function show($id)
     {
-        $schedule = Schedule::findOrFail($id);
-        return view('Interno.schedule.show', compact('schedule'));
+        //
     }
 
     /**
@@ -70,9 +67,7 @@ class ScheduleController extends Controller
      */
     public function edit($id)
     {
-        $schedule = Schedule::findOrFail($id);
-        $pieces = Piece::all();
-        return view('Interno.schedule.edit', compact('schedule', 'pieces'));
+
     }
 
     /**
@@ -85,11 +80,11 @@ class ScheduleController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $schedule = Schedule::findOrFail($id);
-            $schedule->update($request->all());
-            return redirect(route('agenda.show', $id))->with('success', 'Ae! Evento atualizado!');
+            $contact = Contact::findOrFail($id);
+            $contact->update($request->all());
+            return redirect(route('contato.index'))->with('success', 'Ae! Contato atualizado!');
         }catch(\Exception $e){
-        return redirect()->back()->with('error', 'Foi mal! Erro ao atualizar esse Evento...');
+            return redirect()->back()->with('error', 'Foi mal! Erro ao atualizar contato...');
         }
     }
 
@@ -102,10 +97,10 @@ class ScheduleController extends Controller
     public function destroy($id)
     {
         try{
-            Schedule::destroy($id);
-            return redirect(route('agenda.index'))->with('success', 'Ae! Evento Excluído com sucesso!');
+            Contact::destroy($id);
+            return redirect(route('contato.index'))->with('success', 'Ae! Contato Excluído com sucesso!');
         }catch(\Exception $e){
-            return redirect()->back()->with('error', 'Foi mal! Erro ao excluir esse Evento...');
+        return redirect()->back()->with('error', 'Foi mal! Erro ao excluir esse Contato...');
         }
     }
 }

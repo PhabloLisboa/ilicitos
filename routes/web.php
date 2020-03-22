@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/administracao/sobre', 'About\AboutController');
     Route::resource('/administracao/agenda', 'Schedule\ScheduleController');
     Route::resource('/administracao/pecas', 'Piece\PieceController');
+    Route::resource('/administracao/contato', 'Contact\ContactController');
 
 });
 
