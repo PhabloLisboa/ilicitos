@@ -32,8 +32,8 @@
         <ul class="collection">
             @foreach($schedules as $i => $schedule)
             <li class="collection-item avatar {{$i%2 ? 'black white-text' : ''}}">
-                <img src="{{$schedule->piece->cover}}" alt="" class="circle">
-                <span class="title">{{$schedule->piece->name}}</span>
+                <img src="{{$schedule->piece ? $schedule->piece->cover : ''}}" alt="" class="circle">
+                <span class="title">{{$schedule->piece ? $schedule->piece->name : 'Sem peça definida'}}</span>
                 <p>{{date("d/m/Y h:i", strtotime($schedule->date))}}<br>
                     {{$schedule->place}}
                 </p>

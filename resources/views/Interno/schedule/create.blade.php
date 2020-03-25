@@ -40,6 +40,7 @@
             <div class="row">
                 <div class="input-field col s12 l6">
                     <select name="piece">
+                        <option value="{{null}}"></option>
                         @foreach($pieces as $piece)
                             <option value="{{$piece->id}}">{{$piece->name}}</option>
                         @endforeach

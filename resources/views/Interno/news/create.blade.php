@@ -25,7 +25,7 @@
     @endif
 
     <div class="row">
-        <form  method="POST" class="formToDispatch" action="{{route('noticias.store')}}">
+        <form  method="POST" class="formToDispatch" enctype="multipart/form-data" action="{{route('noticias.store')}}">
             @csrf
 
 
@@ -37,6 +37,15 @@
             </div>
 
             <textarea name="text" ></textarea>
+            <div class="file-field input-field">
+                <div class="btn black">
+                    <span>Imagem</span>
+                    <input name="image" type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
 
     </div>
 

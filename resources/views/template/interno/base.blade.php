@@ -30,8 +30,12 @@
                 </form>
 
         </div>
+        <a href="#nav-mobile" data-target="nav-mobile"
+            class="top-nav sidenav-trigger full hide-on-large-only">
+            <i class="fas fa-bars"></i>
+        </a>
     </nav>
-      <div class="container"><a href="#" data-target="nav-mobile" class="top-nav sidenav-trigger full hide-on-large-only"><i class="material-icons">menu</i></a></div>
+
       <ul id="nav-mobile" class="sidenav sidenav-fixed nav-wrapper">
             <li>
               <div class="user-view center">
@@ -39,11 +43,12 @@
 
                 </div>
                 <a href="#user" class="justify-center"><img class="circle fit" src="{{Auth::user()->avatar ? asset('/storage/images').'/'.Auth::user()->avatar->path : asset('/storage/images/empty.webp')}}"></a>
-                <a href="#name"><span class="white-text name">Administrador</span></a>
+                <a href="#name"><span class="white-text name">{{Auth::user()->person->name}}</span></a>
                 <a href="#email"><span class="white-text email">{{Auth::user()->email}}</span></a>
               </div>
             </li>
-        <li class="in-menu-item"><a href="{{route('equipe.index')}}"class="waves-effect waves-black roboto roboto-black">Equipe</a>
+            <li class="in-menu-item"><a href="/administracao"class="waves-effect waves-black roboto roboto-black">Início</a>
+            <li class="in-menu-item"><a href="{{route('equipe.index')}}"class="waves-effect waves-black roboto roboto-black">Equipe</a>
             <li class="in-menu-item"><a href="{{route('noticias.index')}}" class="waves-effect waves-black roboto roboto-black">Notícias</a>
             <li class="in-menu-item"><a href="{{route('sobre.index')}}" class="waves-effect waves-black roboto roboto-black">Sobre</a>
             <li class="in-menu-item"><a href="{{route('agenda.index')}}" class="waves-effect waves-black roboto roboto-black">Agenda</a>
@@ -74,6 +79,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.dropdown-trigger');
             var instances = M.Dropdown.init(elems, {});
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, {});
         });
   </script>
   @yield('script')

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -15,7 +17,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
+        $news = News::paginate(10);
        return view('Interno.news.news', compact('news'));
     }
 
@@ -41,7 +43,7 @@ class NewsController extends Controller
             News::create($request);
             return redirect(route('noticias.index'))->with('success', 'Ae! Notícia adicionada!');
         }catch(\Exception $e){
-            return redirect()->back()->with('error', 'Foi mal! Erro ao criar essa notícia...');
+            return redirect()->back()->with('error', $e->getMessage()/*'Foi mal! Erro ao criar essa notícia...'*/);
         }
     }
 
@@ -81,6 +83,14 @@ class NewsController extends Controller
 
         try{
             $news = News::findOrFail($id);
+
+            if($request->image){
+                Storage::delete('public/images/'. $news->image->path);
+
+                $news->image_id = Image::create($request, 'image')->id;
+                $news->save();
+            }
+
             $news->update($request->all());
             return redirect(route('noticias.show', $id))->with('success', 'Ae! Notícia atualizada!');
         }catch(\Exception $e){

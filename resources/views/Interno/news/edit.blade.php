@@ -10,7 +10,7 @@
     </div>
 
     <div class="row">
-        <form  method="POST" class="formToDispatch" action="{{route('noticias.update', $news->id)}}">
+        <form  method="POST" class="formToDispatch" enctype="multipart/form-data" action="{{route('noticias.update', $news->id)}}">
             @csrf
             @method('PUT')
 
@@ -22,6 +22,15 @@
             </div>
 
             <textarea name="text" >{!! $news->text !!}</textarea>
+            <div class="file-field input-field">
+                <div class="btn black">
+                    <span>Imagem</span>
+                    <input name="image" value="{{$news->image->path}}" type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
 
     </div>
 

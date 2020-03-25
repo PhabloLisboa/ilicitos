@@ -147,7 +147,7 @@ header{
     z-index: 0;
 }
 .sidenav-overlay{
-    width: 0;
+    width: auto;
 }
 
 
@@ -237,6 +237,8 @@ header{
 }
 
 
-/* .main-admin-container{
-    background-color: blue;
-} */
+.pagination li.active {
+    background-color: #000;
+}
+
+.tabs-content.carousel .carousel-item { height: 15vh!important; }

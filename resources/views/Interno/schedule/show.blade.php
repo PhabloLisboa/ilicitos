@@ -41,9 +41,9 @@
                     <p>{{$schedule->place}}</p>
                     <br/>
                     <div class="card-image">
-                        <img src="{{$schedule->piece->cover}}">
+                        <img src="{{$schedule->piece && $schedule->piece->cover}}">
                     </div>
-                    <h5 class="">{{$schedule->piece->name}}</h5>
+                    <h5 class="">{{$schedule->piece && $schedule->piece->name}}</h5>
                 </div>
 
                 <div class="card-action center-align">
