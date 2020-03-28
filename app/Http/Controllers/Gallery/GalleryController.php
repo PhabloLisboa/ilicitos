@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\News;
+namespace App\Http\Controllers\Gallery;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gallery;
 use App\Models\Image;
-use App\Models\News;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class NewsController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::paginate(10);
-       return view('Interno.news.news', compact('news'));
+        $galleries = Gallery::paginate(5);
+        return view('Interno.gallery.gallery', compact('galleries'));
     }
 
     /**
@@ -28,7 +27,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('Interno.news.create');
+        return view('Interno.gallery.create');
+
     }
 
     /**
@@ -40,10 +40,11 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         try{
-            News::create($request);
-            return redirect(route('noticias.index'))->with('success', 'Ae! Notícia adicionada!');
+            $gallery = Gallery::create($request);
+            Image::createGallery($request, 'fotos', $gallery->id);
+            return redirect(route('galeria.index'))->with('success', 'Ae! Galeria adicionada!');
         }catch(\Exception $e){
-            return redirect()->back()->with('error', 'Foi mal! Erro ao criar essa notícia...');
+        return redirect()->back()->with('error',   'Foi mal! Erro ao criar essa notícia...(Não podemos ter nomes iguais em galeria) Aceito apenas: jpeg, jpg, png.');
         }
     }
 
@@ -55,8 +56,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $news = News::findOrFail($id);
-        return view('Interno.news.show', compact('news'));
+        $gallery = Gallery::findOrFail($id);
+        return view('Interno.gallery.show', compact('gallery'));
     }
 
     /**
@@ -67,8 +68,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news = News::findOrFail($id);
-        return view('Interno.news.edit', compact('news'));
+        //
     }
 
     /**
@@ -80,24 +80,26 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         try{
-            $news = News::findOrFail($id);
+            $gallery = Gallery::findOrFail($id);
+            $gallery->update($request->all());
 
-            if($request->image){
-                Storage::delete('public/images/'. $news->image->path);
-
-                $news->image_id = Image::create($request, 'image')->id;
-                $news->save();
-            }
-
-            $news->update($request->all());
-            return redirect(route('noticias.show', $id))->with('success', 'Ae! Notícia atualizada!');
+            return redirect()->back()->with('success', 'Ae! Galeria atualizada!');
         }catch(\Exception $e){
-            return redirect()->back()->with('error', 'Foi mal! Erro ao atualizar essa notícia...');
+            return redirect()->back()->with('error', 'Foi mal! Erro ao atualizar essa Galeria...');
         }
-
     }
+
+    public function add(Request $request, $id){
+        try{
+
+            Image::createGallery($request, 'fotos', $id);
+            return redirect()->back()->with('success', 'Ae! Galeria atualizada!');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Foi mal! Erro ao adicionar essa(s) Imagens...');
+        }
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -107,13 +109,6 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-
-        try{
-            News::destroy($id);
-            return redirect(route('noticias.index'))->with('success', 'Ae! Notícia Excluída com sucesso!');
-        }catch(\Exception $e){
-            return redirect()->back()->with('error', 'Foi mal! Erro ao excluir essa notícia...');
-        }
-
+        //
     }
 }

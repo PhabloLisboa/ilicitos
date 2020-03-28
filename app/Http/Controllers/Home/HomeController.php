@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\News;
+use App\Models\Piece;
+use App\Models\Schedule;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -24,7 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        return view('Externo.home');
+        $news = News::all()->reverse();
+        $schedule = Schedule::all()->reverse();
+        $pieces = Piece::all();
+        $team = User::all();
+        return view('Externo.home', compact('news', 'schedule', 'pieces', 'team'));
     }
 }

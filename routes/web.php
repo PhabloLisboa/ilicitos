@@ -13,6 +13,9 @@
 Auth::routes();
 
 Route::get('/', 'Home\HomeController@index')->name('begin');
+Route::get('/', 'Home\HomeController@index')->name('begin');
+Route::get('/', 'Home\HomeController@index')->name('begin');
+Route::get('/', 'Home\HomeController@index')->name('begin');
 
 Route::get('/user/create/{hash}', 'User\UserController@create');
 Route::post('/users', 'User\UserController@store')->name('user.store');
@@ -25,6 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/administracao/agenda', 'Schedule\ScheduleController');
     Route::resource('/administracao/pecas', 'Piece\PieceController');
     Route::resource('/administracao/contato', 'Contact\ContactController');
+    Route::resource('/administracao/galeria', 'Gallery\GalleryController');
+    Route::post('/administracao/galeria/{id}/add', 'Gallery\GalleryController@add')->name('galeria.add');
 
 });
 

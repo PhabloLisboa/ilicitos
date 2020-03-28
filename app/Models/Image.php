@@ -35,4 +35,29 @@ class Image extends Model
         return $image;
 
     }
+
+    static function createGallery($request, $fieldName, $galleryId){
+        $files = $request->file($fieldName);
+
+        foreach($files as $i => $file ){
+
+        $extension = $file->getClientOriginalExtension();
+        $gallery = Gallery::findOrFail($galleryId);
+
+        if (!preg_match('/(jpeg)|(jpg)|(png)/mi', $extension)) {
+            throw new Exception('Aceito apenas: jpeg, jpg, png.');
+        }
+
+        $fileName = Str::random(32).".".$extension;
+
+        $file->move(storage_path('app/public/images/galleries'), $fileName);
+
+            $image = new Image();
+            $image->name = $file->getClientOriginalName();
+            $image->path = $fileName;
+            $image->gallery_id = $galleryId;
+            $image->save();
+        }
+
+    }
 }

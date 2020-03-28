@@ -22,25 +22,27 @@
                 <a href="#" class="brand-logo center hide-on-med-and-down roboto-black it-logo">IT</a>
                 <a href="#" data-target="mobile-demo" class="brand-logo center sidenav-trigger roboto-black it-logo">IT</a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="sass.html" class="menu-item">INÍCIO</a></li>
-                    <li><a href="badges.html" class="menu-item">SOBRE</a></li>
-                    <li><a href="collapsible.html" class="menu-item">NOTÍCIAS</a></li>
+                    <li><a href="/" class="menu-item">INÍCIO</a></li>
+                    <li><a href="/sobre" class="menu-item">SOBRE</a></li>
+                    <li><a href="/noticias" class="menu-item">NOTÍCIAS</a></li>
                 </ul>
 
 
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="sass.html" class="menu-item">AGENDA</a></li>
-                    <li><a href="badges.html" class="menu-item">EQUIPE</a></li>
-                    <li><a href="collapsible.html" class="menu-item">CONTATO</a></li>
+                    <li><a href="/agenda" class="menu-item">AGENDA</a></li>
+                    <li><a href="/equipe" class="menu-item">EQUIPE</a></li>
+                    <li><a href="/contato" class="menu-item">CONTATO</a></li>
                 </ul>
 
                 </div>
 
                 <ul class="sidenav" id="mobile-demo">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">Javascript</a></li>
-                <li><a href="mobile.html">Mobile</a></li>
+                    <li><a href="/" class="menu-item">INÍCIO</a></li>
+                    <li><a href="/sobre" class="menu-item">SOBRE</a></li>
+                    <li><a href="/noticias" class="menu-item">NOTÍCIAS</a></li>
+                    <li><a href="/agenda" class="menu-item">AGENDA</a></li>
+                    <li><a href="/equipe" class="menu-item">EQUIPE</a></li>
+                    <li><a href="/contato" class="menu-item">CONTATO</a></li>
                 </ul>
             </nav>
         </header>

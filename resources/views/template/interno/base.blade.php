@@ -53,6 +53,7 @@
             <li class="in-menu-item"><a href="{{route('sobre.index')}}" class="waves-effect waves-black roboto roboto-black">Sobre</a>
             <li class="in-menu-item"><a href="{{route('agenda.index')}}" class="waves-effect waves-black roboto roboto-black">Agenda</a>
             <li class="in-menu-item"><a href="{{route('pecas.index')}}" class="waves-effect waves-black roboto roboto-black">Peças</a>
+            <li class="in-menu-item"><a href="{{route('galeria.index')}}" class="waves-effect waves-black roboto roboto-black">Galerias</a>
             <li class="in-menu-item"><a href="{{route('contato.index')}}" class="waves-effect waves-black roboto roboto-black">Contatos</a>
 
             </li>

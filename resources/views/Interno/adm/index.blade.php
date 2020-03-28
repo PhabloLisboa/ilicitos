@@ -20,6 +20,21 @@
              </div>
         @endif
     </div>
+    <div class="row center-align">
+        <h3>Temos...</h3>
+        <div class="col s12 l4">
+            <h1 class="indigo-text darken-4">{{count($team)}}</h4>
+            <strong>Pessoas na nossa equipe</strong>
+        </div>
+        <div class="col s12 l4">
+            <h1 class="blue-text accent-4">{{count($news)}}</h4>
+            <strong>Notícias Cadastradas</strong>
+        </div>
+        <div class="col s12 l4">
+            <h1 class="blue-text accent-4">{{count($pieces)}}</h4>
+            <strong>Peças no Repertório</strong>
+        </div>
+    </div>
 @endsection
 @section('script')
 <script>
