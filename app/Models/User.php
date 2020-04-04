@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Mail\ResetPass;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
 {
@@ -83,5 +85,11 @@ class User extends Authenticatable
         $user->save();
 
         return $user;
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        Mail::to($this->email)->send(new ResetPass($token));
+        return redirect()->back()->with('status', 'Por favor, verifique sua caixa de e-mail.');
     }
 }

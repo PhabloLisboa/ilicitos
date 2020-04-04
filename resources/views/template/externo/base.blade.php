@@ -31,18 +31,18 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/agenda" class="menu-item">AGENDA</a></li>
                     <li><a href="/equipe" class="menu-item">EQUIPE</a></li>
-                    <li><a href="/contato" class="menu-item">CONTATO</a></li>
+                    <li><a href="{{route('galleries')}}" class="menu-item">GALERIA</a></li>
                 </ul>
 
                 </div>
 
                 <ul class="sidenav" id="mobile-demo">
                     <li><a href="/" class="menu-item">INÍCIO</a></li>
-                    <li><a href="/sobre" class="menu-item">SOBRE</a></li>
-                    <li><a href="/noticias" class="menu-item">NOTÍCIAS</a></li>
-                    <li><a href="/agenda" class="menu-item">AGENDA</a></li>
-                    <li><a href="/equipe" class="menu-item">EQUIPE</a></li>
-                    <li><a href="/contato" class="menu-item">CONTATO</a></li>
+                    <li><a href="{{route('about')}}" class="menu-item">SOBRE</a></li>
+                    <li><a href="{{route('news')}}" class="menu-item">NOTÍCIAS</a></li>
+                    <li><a href="{{route('schedule')}}" class="menu-item">AGENDA</a></li>
+                    <li><a href="{{route('team')}}" class="menu-item">EQUIPE</a></li>
+                    <li><a href="{{route('galleries')}}" class="menu-item">Galeria</a></li>
                 </ul>
             </nav>
         </header>
@@ -53,8 +53,20 @@
             <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                <h5 class="white-text">Parceiros</h5>
-                <p class="grey-text text-lighten-4"></p>
+                <h5 class="white-text">Contato</h5>
+                <ul>
+                    @foreach (App\Models\Contact::all() as $contact)
+                        <li>
+                            @if($contact->type_id == 1)
+                                <i class="fas fa-at"></i> {{$contact->contact}}
+                            @elseif($contact->type_id == 2)
+                                <i class="fas fa-phone"></i> {{$contact->contact}}
+                            @else
+                                <i class="fas fa-id-card"></i> {{$contact->contact}}
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
 
                 </div>
                 <div class="col l4 offset-l2 s12">

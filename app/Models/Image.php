@@ -11,6 +11,10 @@ class Image extends Model
     protected $table = 'images';
     protected $fillable = ['name', 'path', 'gallery_id'];
 
+    public function gallery(){
+        return $this->belongsTo(Gallery::class, 'gallery_id');
+    }
+
     static function create($request, $fieldName){
         $file = $request->file($fieldName);
         $extension = $file->getClientOriginalExtension();

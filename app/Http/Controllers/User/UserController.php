@@ -9,6 +9,7 @@ use App\Models\Person;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -92,7 +93,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if ($id == Auth::user()->id)
+            return view('Interno.user.edit', compact('user'));
+
+        return redirect()->back();
     }
 
     /**
@@ -104,7 +110,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $user = User::findOrFail($id);
+            $user->update($request->all());
+            return redirect()->back()->with('success', 'Ae! Peça atualizada!');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Foi mal! Erro ao atualizar essa Peça...');
+        }
     }
 
     /**

@@ -1,9 +1,8 @@
 @extends('template.externo.base')
 @section('title', 'Ilícitos Teatro')
 @section('main')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
-
+    <link rel="stylesheet" href="{{asset('css/glide.core.min.css')}}">
+    <script src="{{asset('js/glide.min.js')}}"></script>
 
 
 
@@ -66,23 +65,50 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="glide-photos">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        @foreach($galleries[rand(0, count($galleries)-1)]->images as $image)
+                        <a href="{{route('show.photos',$image->gallery->id)}}">
+                            <img class="responsive-img"
+                            src="{{asset('/storage/images/galleries').'/'.$image->path}}">
+                        </a>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-
-
-
-
 @endsection
 @section('script')
 <script>
 
-    new Glide('.glide', {
+    if(document.querySelector('.glide')){
+        new Glide('.glide', {
+            type: 'carousel',
+            autoplay: 10000,
+            hoverpause: false,
+            rewindDuration:2000,
+        }).mount()}
+
+    new Glide('.glide-photos', {
         type: 'carousel',
         autoplay: 10000,
+        perView: 4,
+        breakpoints: {
+            800: {
+            perView: 2
+            },
+            480: {
+            perView: 1
+            }
+        },
         hoverpause: false,
         rewindDuration:2000,
     }).mount()
+
 
 
     document.addEventListener('DOMContentLoaded', function() {

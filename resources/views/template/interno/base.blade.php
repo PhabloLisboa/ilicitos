@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/custom.css')}}">
     <script src="https://kit.fontawesome.com/b1e0995210.js" crossorigin="anonymous"></script>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
         <title>@yield('title')</title>
@@ -42,22 +44,25 @@
                 <div class="background black">
 
                 </div>
-                <a href="#user" class="justify-center"><img class="circle fit" src="{{Auth::user()->avatar ? asset('/storage/images').'/'.Auth::user()->avatar->path : asset('/storage/images/empty.webp')}}"></a>
-                <a href="#name"><span class="white-text name">{{Auth::user()->person->name}}</span></a>
-                <a href="#email"><span class="white-text email">{{Auth::user()->email}}</span></a>
+                <a href="{{route('user.edit', Auth::user()->id)}}" class="justify-center"><img class="circle fit" src="{{Auth::user()->avatar ? asset('/storage/images').'/'.Auth::user()->avatar->path : asset('/storage/images/empty.webp')}}"></a>
+                <a href="#"><span class="white-text name">{{Auth::user()->person->name}}</span></a>
+                <a href="#"><span class="white-text email">{{Auth::user()->email}}</span></a>
               </div>
             </li>
-            <li class="in-menu-item"><a href="/administracao"class="waves-effect waves-black roboto roboto-black">Início</a>
-            <li class="in-menu-item"><a href="{{route('equipe.index')}}"class="waves-effect waves-black roboto roboto-black">Equipe</a>
-            <li class="in-menu-item"><a href="{{route('noticias.index')}}" class="waves-effect waves-black roboto roboto-black">Notícias</a>
-            <li class="in-menu-item"><a href="{{route('sobre.index')}}" class="waves-effect waves-black roboto roboto-black">Sobre</a>
-            <li class="in-menu-item"><a href="{{route('agenda.index')}}" class="waves-effect waves-black roboto roboto-black">Agenda</a>
-            <li class="in-menu-item"><a href="{{route('pecas.index')}}" class="waves-effect waves-black roboto roboto-black">Peças</a>
-            <li class="in-menu-item"><a href="{{route('galeria.index')}}" class="waves-effect waves-black roboto roboto-black">Galerias</a>
-            <li class="in-menu-item"><a href="{{route('contato.index')}}" class="waves-effect waves-black roboto roboto-black">Contatos</a>
+            <li class="in-menu-item"><a href="/administracao"class="waves-effect waves-black roboto roboto-black">Início</a></li>
 
-            </li>
+            @if(in_array(Auth::user()->sys_role_id,[1,2]))
+                <li class="in-menu-item"><a href="{{route('noticias.index')}}" class="waves-effect waves-black roboto roboto-black">Notícias</a></li>
+                <li class="in-menu-item"><a href="{{route('agenda.index')}}" class="waves-effect waves-black roboto roboto-black">Agenda</a></li>
+                <li class="in-menu-item"><a href="{{route('pecas.index')}}" class="waves-effect waves-black roboto roboto-black">Peças</a></li>
+                <li class="in-menu-item"><a href="{{route('galeria.index')}}" class="waves-effect waves-black roboto roboto-black">Galerias</a></li>
+            @endif
 
+            @if(in_array(Auth::user()->sys_role_id,[1]))
+                <li class="in-menu-item"><a href="{{route('equipe.index')}}"class="waves-effect waves-black roboto roboto-black">Equipe</a></li>
+                <li class="in-menu-item"><a href="{{route('sobre.index')}}" class="waves-effect waves-black roboto roboto-black">Sobre</a></li>
+                <li class="in-menu-item"><a href="{{route('contato.index')}}" class="waves-effect waves-black roboto roboto-black">Contatos</a></li>
+            @endif
       </ul>
 
     </header>

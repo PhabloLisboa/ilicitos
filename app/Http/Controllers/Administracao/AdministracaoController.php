@@ -24,9 +24,9 @@ class AdministracaoController extends Controller
             case 1:
                 return view('Interno.adm.index', compact('news', 'schedule', 'pieces', 'team'));
             case 2:
-                return Auth::user()->avatar;
+                return view('Interno.adm.index', compact('news', 'schedule', 'pieces', 'team'));
             default:
-                return Auth::user()->avatar;
+                return view('Interno.adm.index', compact('news', 'schedule', 'pieces', 'team'));
         }
     }
 }
