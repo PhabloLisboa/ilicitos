@@ -86,7 +86,7 @@
             <div class="footer-copyright">
             <div class="container">
             © 2020 Copyright - Ilícitos Teatro
-            <a class="grey-text text-lighten-4 right" href="#!">Developed by Phablo <i class="far fa-address-card"></i></a>
+            <a class="grey-text text-lighten-4 right" href="https://github.com/PhabloLisboa">Developed by Phablo <i class="far fa-address-card"></i></a>
             </div>
             </div>
         </footer>
