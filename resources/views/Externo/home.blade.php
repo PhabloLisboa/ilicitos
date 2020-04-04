@@ -4,11 +4,14 @@
     <link rel="stylesheet" href="{{asset('css/glide.core.min.css')}}">
     <script src="{{asset('js/glide.min.js')}}"></script>
 
-
-
     <div class="row">
         @if(!count($schedule))
-            Não há Eventos marcados!
+
+            <div class=" black white-textcenter">
+
+                Não Há Eventos Marcados
+
+            </div>
         @else
             <div class="carousel carousel-home black white-text carousel-slider center">
                 @foreach($schedule as $i => $evento)
@@ -28,6 +31,7 @@
     </div>
 
     <div class="container">
+        @if(count($news))
         <div class="row">
             <div class="glide">
                 <div class="glide__track" data-glide-el="track">
@@ -65,7 +69,9 @@
                 </div>
             </div>
         </div>
+        @endif
 
+        @if(count($galleries))
         <div class="row">
             <div class="glide-photos">
                 <div class="glide__track" data-glide-el="track">
@@ -80,6 +86,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 @endsection
 @section('script')
@@ -93,6 +100,8 @@
             rewindDuration:2000,
         }).mount()}
 
+
+    if(document.querySelector('.glide-photos')){
     new Glide('.glide-photos', {
         type: 'carousel',
         autoplay: 10000,
@@ -107,7 +116,7 @@
         },
         hoverpause: false,
         rewindDuration:2000,
-    }).mount()
+    }).mount()}
 
 
 

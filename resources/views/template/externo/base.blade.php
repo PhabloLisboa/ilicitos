@@ -6,12 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" href="{{asset('css/custom.css')}}">
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/b1e0995210.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{asset('css/font.css')}}">
+        <link rel="stylesheet" href="{{asset('css/materialize.min.css')}}">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="href="{{asset('js/materialize.min.js')}} crossorigin="anonymous"></script>
+
+        <script src="https://kit.fontawesome.com/b1e0995210.js" crossorigin="anonymous"></script>
 
         <title>@yield('title')</title>
     </head>
